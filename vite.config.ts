@@ -14,10 +14,10 @@ const csp = [
   "frame-ancestors 'none'",
   "form-action 'self'",
   "script-src 'self'",
-  "style-src 'self' 'unsafe-inline'",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "img-src 'self' data:",
-  "font-src 'self'",
-  "connect-src 'self' https://SEU-PROJETO-SUPABASE.supabase.co https://seu-backend.up.railway.app http://localhost:3000",
+  "font-src 'self' https://fonts.gstatic.com",
+  "connect-src 'self' https://joylgjdlscyglxuvurcf.supabase.co https://cineworld-tv-backend-production.up.railway.app http://localhost:3000",
 ].join('; ');
 
 export default defineConfig({
