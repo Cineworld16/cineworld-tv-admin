@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 250 30% 4%;
+    --foreground: 0 0% 96%;
+
+    --card: 250 24% 8%;
+    --card-foreground: 0 0% 96%;
+
+    --popover: 250 24% 8%;
+    --popover-foreground: 0 0% 96%;
+
+    /* CineRush brand — roxo */
+    --primary: 270 91% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 250 20% 14%;
+    --secondary-foreground: 0 0% 96%;
+
+    --muted: 250 16% 16%;
+    --muted-foreground: 250 8% 64%;
+
+    /* CineRush brand — rosa */
+    --accent: 330 81% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 250 18% 18%;
+    --input: 250 18% 18%;
+    --ring: 270 91% 65%;
+
+    --radius: 0.85rem;
+
+    --highlight: 45 100% 55%;
+    --highlight-foreground: 250 30% 4%;
+
+    --surface-dark: 250 32% 2%;
+    --surface-elevated: 250 22% 11%;
+
+    --sidebar-background: 250 24% 8%;
+    --sidebar-foreground: 0 0% 96%;
+    --sidebar-primary: 270 91% 65%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 250 16% 16%;
+    --sidebar-accent-foreground: 0 0% 96%;
+    --sidebar-border: 250 18% 18%;
+    --sidebar-ring: 270 91% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.01em;
+  }
+
+  /* Scrollbar discreta e on-brand */
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: hsl(var(--surface-dark)); }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, hsl(var(--primary)), hsl(var(--accent)));
+    border-radius: 6px;
+  }
+}
+
+@layer utilities {
+  /* ---- Brand gradients (nomes mantidos p/ compat) ---- */
+  .text-gradient-fire {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-fire {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+  }
+
+  .bg-gradient-dark {
+    background: linear-gradient(180deg, hsl(var(--surface-dark)), hsl(var(--background)));
+  }
+
+  .bg-surface-elevated {
+    background-color: hsl(var(--surface-elevated));
+  }
+
+  .shadow-fire {
+    box-shadow: 0 8px 32px -8px hsl(var(--primary) / 0.55);
+  }
+
+  .shadow-fire-lg {
+    box-shadow: 0 18px 56px -12px hsl(var(--primary) / 0.65);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* ---- Animações ---- */
+  .animate-pulse-slow { animation: pulse-slow 3s ease-in-out infinite; }
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  .animate-slide-up { animation: slide-up 0.6s ease-out both; }
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-float { animation: float 6s ease-in-out infinite; }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+
+  /* Carrossel infinito de capas */
+  .animate-marquee { animation: marquee var(--marquee-duration, 40s) linear infinite; }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee-reverse { animation: marquee-reverse var(--marquee-duration, 40s) linear infinite; }
+  @keyframes marquee-reverse {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+  /* Pausa o movimento ao passar o mouse (desktop) */
+  .marquee-track:hover { animation-play-state: paused; }
+
+  /* Reveal ao rolar (controlado pelo hook useScrollReveal) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .glow-fire {
+    box-shadow: 0 0 0 1px hsl(var(--primary) / 0.25),
+                0 0 60px -12px hsl(var(--primary) / 0.5);
+  }
+
+  /* Respeita usuários que pedem menos movimento */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee,
+    .animate-marquee-reverse,
+    .animate-float,
+    .animate-slide-up,
+    .animate-pulse-slow {
+      animation: none !important;
+    }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+}
