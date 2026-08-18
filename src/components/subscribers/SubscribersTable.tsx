@@ -99,7 +99,7 @@ function CopyTutorialLink({
 
   const primeiroNome = nome?.trim().split(/\s+/)[0] ?? '';
   const msg =
-    `Oi ${primeiroNome}! Seu acesso do CineRush TV está pronto 🎬 ` +
+    `Oi ${primeiroNome}! Seu acesso do CineWorld está pronto 🎬 ` +
     `É só abrir esse link e seguir o passo a passo pra configurar no seu aparelho: ${url}`;
   const wa = whatsappUrl(phone);
   const waComTexto = wa ? `${wa}?text=${encodeURIComponent(msg)}` : null;

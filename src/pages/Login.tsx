@@ -9,7 +9,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/lib/supabase';
 
 // Login é por usuário (ex.: "teus"); o sistema completa com este domínio pro Supabase Auth.
-const ADMIN_DOMAIN = 'cinerush.tv';
+const ADMIN_DOMAIN = 'cineworld.tv';
 
 export default function Login() {
   const { session, loading } = useAuth();
